@@ -1,0 +1,26 @@
+.env
+.venv/
+venv/
+env/
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+
+# Generated scan reports (keep folder via .gitkeep)
+reports/*.json
+!reports/.gitkeep
+
+# Screenshots placeholder folder is tracked via .gitkeep
+!screenshots/.gitkeep
+
+# IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml
