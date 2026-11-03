@@ -573,8 +573,8 @@ def render_sidebar(entries: list[TaxonomyEntry]) -> dict:
 
         st.divider()
         st.caption(
-            "**Standards** · OWASP LLM Top 10 (2025) · OWASP Agentic Top 10 "
-            "(Dec 2025) · MITRE ATLAS"
+            "**Standards** · OWASP LLM Top 10 (2025) · OWASP Top 10 for Agentic "
+            "Applications (2026) · MITRE ATLAS"
         )
 
     return {"categories": cats, "severities": sevs, "owasps": owasps, "search": search}
@@ -1287,7 +1287,7 @@ def main() -> None:
 
     st.markdown(
         '<div class="atx-footer">Agent Threat Taxonomy · OWASP LLM Top 10 (2025) · '
-        'OWASP Agentic Top 10 (Dec 2025) · MITRE ATLAS · Built by Yug Mukesh Patel</div>',
+        'OWASP Agentic Top 10 (2026) · MITRE ATLAS · Built by Yug Mukesh Patel</div>',
         unsafe_allow_html=True,
     )
 

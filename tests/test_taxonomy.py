@@ -31,6 +31,29 @@ EXPECTED_CATEGORIES = {
 }
 
 
+# OWASP Top 10 for Agentic Applications (2026). See docs/owasp-agentic-mapping.md.
+OWASP_AGENTIC = {
+    "ASI01 Agent Goal Hijack",
+    "ASI02 Tool Misuse and Exploitation",
+    "ASI03 Identity and Privilege Abuse",
+    "ASI04 Agentic Supply Chain Vulnerabilities",
+    "ASI05 Unexpected Code Execution",
+    "ASI06 Memory and Context Poisoning",
+    "ASI07 Insecure Inter-Agent Communication",
+    "ASI08 Cascading Failures",
+    "ASI09 Human-Agent Trust Exploitation",
+    "ASI10 Rogue Agents",
+}
+MAPPING_DOC = Path(__file__).resolve().parent.parent / "docs" / "owasp-agentic-mapping.md"
+
+
+def test_mapping_doc_lists_every_entry_with_its_current_code():
+    doc = MAPPING_DOC.read_text(encoding="utf-8")
+    for entry in ENTRIES:
+        code = entry.owasp_agentic_top10.split()[0]
+        assert re.search(rf"\| {entry.id} \|.*\| {code} \|", doc), entry.id
+
+
 def test_catalog_loads_without_warnings():
     assert WARNINGS == []
     assert len(ENTRIES) == 52  # the number stated in the README
@@ -54,6 +77,7 @@ def test_entry_is_complete_and_mapped(entry):
         assert getattr(entry, field).strip(), f"{entry.id} has empty {field}"
     assert entry.severity in {"Critical", "High", "Medium", "Low"}
     assert re.match(r"LLM(0[1-9]|10)\b", entry.owasp_llm_top10), entry.owasp_llm_top10
+    assert entry.owasp_agentic_top10 in OWASP_AGENTIC, entry.owasp_agentic_top10
     assert re.match(r"CWE-\d+", entry.cwe), entry.cwe
     assert entry.references, f"{entry.id} has no references"
     assert all(ref.startswith("https://") for ref in entry.references)

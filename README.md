@@ -1,12 +1,12 @@
 # Agent Threat Taxonomy
 
-**A structured catalog of 50+ AI agent attacks with a live LLM scanner. Maps to OWASP LLM Top 10 (2025) and OWASP Agentic Top 10 (2025).**
+**A structured catalog of 50+ AI agent attacks with a live LLM scanner. Maps to OWASP LLM Top 10 (2025) and the OWASP Top 10 for Agentic Applications (2026).**
 
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.32+-FF4B4B?logo=streamlit&logoColor=white)
 ![Groq](https://img.shields.io/badge/Groq-Llama_3.3_70B-F55036)
 ![OWASP](https://img.shields.io/badge/OWASP-LLM_Top_10_(2025)-000000?logo=owasp&logoColor=white)
-![OWASP Agentic](https://img.shields.io/badge/OWASP-Agentic_Top_10_(Dec_2025)-000000?logo=owasp&logoColor=white)
+![OWASP Agentic](https://img.shields.io/badge/OWASP-Agentic_Top_10_(2026)-000000?logo=owasp&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-10B981)
 
 ---
@@ -17,7 +17,7 @@ In 2025-2026 the AI-agent attack surface stopped being theoretical. A few of the
 
 - **CVE-2025-32711 — "EchoLeak" (Microsoft 365 Copilot, CVSS 9.3).** An attacker-controlled email body was enough to silently exfiltrate the user's recent inbox content through an embedded markdown image — the first publicly-disclosed *zero-click* prompt-injection vulnerability against a major enterprise agent.
 - **CVE-2025-53773 — GitHub Copilot RCE.** Hidden instructions inside source files coerced the Copilot agent into chaining its tools into local code execution, demonstrating that "indirect injection → tool abuse" is a real RCE primitive, not a research curiosity.
-- **OWASP Agentic AI Top 10 (December 2025 release).** OWASP's GenAI Security Project formalised an attack surface specific to *agents* — instruction hijacking, tool misuse, memory tampering, supply-chain compromise — alongside the existing OWASP LLM Top 10.
+- **OWASP Top 10 for Agentic Applications (December 2025 release).** OWASP's GenAI Security Project formalised an attack surface specific to *agents* — instruction hijacking, tool misuse, memory tampering, supply-chain compromise — alongside the existing OWASP LLM Top 10.
 
 Defenders need a structured, executable answer to the question: **"how vulnerable is my LLM agent, actually?"** This project is one answer. It pairs a curated taxonomy with a live scanner that runs every attack against the target, has an independent LLM judge score the outcome, and produces a severity-weighted vulnerability report you can hand to a security review.
 
@@ -44,7 +44,7 @@ A Streamlit web app with three modes:
 | 3 | Prompt Stealing (system-prompt + tool-schema extraction) | 7 | PS-001 … PS-007 | LLM07, LLM02 |
 | 4 | Data Exfiltration via Output (images, links, steganography) | 6 | DE-001 … DE-006 | LLM02, LLM06 |
 | 5 | Tool & Function Abuse (MCP, confused-deputy, argument injection) | 8 | TA-001 … TA-008 | LLM06, LLM03, LLM05 |
-| 6 | Multi-Turn / Conversation Hijacking (sleeper triggers, memory) | 6 | MT-001 … MT-006 | LLM01 (+ AAI05) |
+| 6 | Multi-Turn / Conversation Hijacking (sleeper triggers, memory) | 6 | MT-001 … MT-006 | LLM01 (+ ASI06) |
 | 7 | Encoding & Obfuscation Evasion (base64, ROT, homoglyphs, zero-width) | 6 | EO-001 … EO-006 | LLM01 |
 | | **Total** | **52** | | |
 
@@ -129,7 +129,7 @@ The UI renders the same data as severity-badged finding cards, a 0-100 gauge, an
 | Standard | How this project maps |
 |---|---|
 | **OWASP LLM Top 10 (2025)** | Every taxonomy entry carries an `owasp_llm_top10` field. Coverage spans LLM01 Prompt Injection, LLM02 Sensitive Information Disclosure, LLM03 Supply Chain, LLM05 Improper Output Handling, LLM06 Excessive Agency, LLM07 System Prompt Leakage. |
-| **OWASP Agentic AI Top 10 (Dec 2025)** | `owasp_agentic_top10` covers Agent Instruction Hijacking (AAI01), Tool Misuse & Cross-Domain Exploits (AAI02), Agent Data Exfiltration (AAI03), Insecure Agent Supply Chain (AAI04), Memory & State Tampering (AAI05). |
+| **OWASP Top 10 for Agentic Applications (2026)** | `owasp_agentic_top10` uses the official ASI codes: Agent Goal Hijack (ASI01), Tool Misuse and Exploitation (ASI02), Identity and Privilege Abuse (ASI03), Agentic Supply Chain Vulnerabilities (ASI04), Unexpected Code Execution (ASI05), Memory and Context Poisoning (ASI06), Human-Agent Trust Exploitation (ASI09). Per-entry reasoning: [docs/owasp-agentic-mapping.md](docs/owasp-agentic-mapping.md). |
 | **CWE** | Each entry includes a CWE ID — e.g. CWE-77 (Command Injection), CWE-200 (Information Exposure), CWE-918 (SSRF), CWE-1007 (Insufficient Visual Distinction), CWE-829 (Inclusion of Functionality from Untrusted Sphere). |
 | **MITRE ATLAS** | Categories align to ATLAS adversarial techniques where applicable (e.g. `AML.T0051 LLM Prompt Injection`). |
 
@@ -138,7 +138,7 @@ The UI renders the same data as severity-badged finding cards, a 0-100 gauge, an
 This is **original work** — every payload, every YAML schema field, every scanner module, and every line of UI is written from scratch — but it would not exist without the public research output of:
 
 - **[Arcanum-Sec/arc_pi_taxonomy](https://github.com/Arcanum-Sec/arc_pi_taxonomy)** — for crystallising "taxonomy of prompt injection" as a useful artefact in the first place.
-- **OWASP GenAI Security Project** — for the LLM Top 10 and the December 2025 Agentic AI Top 10 release.
+- **OWASP GenAI Security Project** — for the LLM Top 10 and the December 2025 Top 10 for Agentic Applications.
 - **MITRE ATLAS** — for the adversarial ML technique catalogue.
 - **Embrace The Red (Johann Rehberger)** — for the markdown-image exfil and ASCII-smuggler research that informed the Data Exfiltration and Encoding categories.
 - **AIM Labs / Aim Security** — for the EchoLeak disclosure that motivated the Indirect Injection category.

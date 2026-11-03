@@ -19,7 +19,7 @@ entries:
       attacker domain with base64 query data.
     severity: Critical
     owasp_llm_top10: LLM02 Sensitive Information Disclosure
-    owasp_agentic_top10: AAI03 Agent Data Exfiltration
+    owasp_agentic_top10: ASI01 Agent Goal Hijack
     cwe: CWE-200
     references:
       - https://embracethered.com/blog/posts/2024/the-dangers-of-unfurling-and-markdown-injection/
@@ -37,7 +37,7 @@ entries:
       string includes any non-placeholder value drawn from session context.
     severity: High
     owasp_llm_top10: LLM02 Sensitive Information Disclosure
-    owasp_agentic_top10: AAI03 Agent Data Exfiltration
+    owasp_agentic_top10: ASI09 Human-Agent Trust Exploitation
     cwe: CWE-601
     references:
       - https://embracethered.com/blog/posts/2024/the-dangers-of-unfurling-and-markdown-injection/
@@ -55,7 +55,7 @@ entries:
       tool-result data embedded as parameters.
     severity: Critical
     owasp_llm_top10: LLM06 Excessive Agency
-    owasp_agentic_top10: AAI03 Agent Data Exfiltration
+    owasp_agentic_top10: ASI02 Tool Misuse and Exploitation
     cwe: CWE-918
     references:
       - https://genai.owasp.org/llmrisk/llm06-excessive-agency/
@@ -73,7 +73,7 @@ entries:
       align to ASCII characters from prior conversation.
     severity: Medium
     owasp_llm_top10: LLM02 Sensitive Information Disclosure
-    owasp_agentic_top10: AAI03 Agent Data Exfiltration
+    owasp_agentic_top10: ASI01 Agent Goal Hijack
     cwe: CWE-1007
     references:
       - https://embracethered.com/blog/posts/2024/ascii-smuggler/
@@ -91,7 +91,7 @@ entries:
       concatenated, reconstruct system-prompt content.
     severity: High
     owasp_llm_top10: LLM02 Sensitive Information Disclosure
-    owasp_agentic_top10: AAI03 Agent Data Exfiltration
+    owasp_agentic_top10: ASI01 Agent Goal Hijack
     cwe: CWE-200
     references:
       - https://genai.owasp.org/llmrisk/llm02-sensitive-information-disclosure/
@@ -109,7 +109,7 @@ entries:
       with conversation-derived user data.
     severity: High
     owasp_llm_top10: LLM02 Sensitive Information Disclosure
-    owasp_agentic_top10: AAI03 Agent Data Exfiltration
+    owasp_agentic_top10: ASI09 Human-Agent Trust Exploitation
     cwe: CWE-601
     references:
       - https://genai.owasp.org/llmrisk/llm02-sensitive-information-disclosure/

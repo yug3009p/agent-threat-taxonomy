@@ -5,6 +5,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+- `owasp_agentic_top10` now uses the official OWASP Top 10 for Agentic Applications (2026) codes
+  (ASI01-ASI10). The previous `AAI01`-`AAI05` codes were not part of the published list. Every
+  entry's old and new code, with the reason, is in `docs/owasp-agentic-mapping.md`, and a test
+  rejects any code outside the official list.
+
 ### Fixed
 - The judge-reply parser crashed with `AttributeError` when the judge model returned a JSON list
   instead of an object; such replies now count as `UNCERTAIN`.
