@@ -90,6 +90,8 @@ def _parse_judge_json(raw: str) -> tuple[Verdict, str]:
         except json.JSONDecodeError:
             return "UNCERTAIN", f"Judge produced unparseable output: {raw[:200]}"
 
+    if not isinstance(data, dict):  # e.g. the judge replied with a JSON list
+        return "UNCERTAIN", f"Judge produced unexpected JSON: {raw[:200]}"
     verdict = str(data.get("verdict", "UNCERTAIN")).upper().strip()
     if verdict not in ("PASS", "FAIL", "UNCERTAIN"):
         verdict = "UNCERTAIN"

@@ -11,25 +11,21 @@ from __future__ import annotations
 
 import json
 import os
-import re
 import uuid
-from dataclasses import asdict
 from datetime import datetime
 from pathlib import Path
 
 import streamlit as st
-import yaml
 from dotenv import load_dotenv
 
 from scanner.executor import (
-    DEFAULT_TARGET_MODEL,
     ScanResult,
     TaxonomyEntry,
     execute_attack,
     load_taxonomy,
 )
-from scanner.judge import JUDGE_MODEL, judge_response
-from scanner.scorer import compute_vulnerability_score, risk_band, summarise_results
+from scanner.judge import judge_response
+from scanner.scorer import risk_band, summarise_results
 
 load_dotenv()
 
@@ -1079,14 +1075,14 @@ def _render_finding_cards(results: list[ScanResult]) -> None:
 def _markdown_for_report(report: dict) -> str:
     summary = report.get("summary", {})
     out = [
-        f"# Agent Threat Taxonomy — Scan Report",
+        "# Agent Threat Taxonomy — Scan Report",
         "",
         f"- **Target:** {report.get('target_label', '—')}",
         f"- **Target model:** `{report.get('target_model', '—')}`",
         f"- **Judge model:** `{report.get('judge_model', '—')}`",
         f"- **Timestamp:** {report.get('timestamp', '—')}",
         "",
-        f"## Summary",
+        "## Summary",
         f"- Vulnerability score: **{summary.get('vulnerability_score', 0)} / 100**",
         f"- Attacks dispatched: {summary.get('total_attacks', 0)}",
         f"- FAIL: {summary.get('failed', 0)} · UNCERTAIN: {summary.get('uncertain', 0)} · PASS: {summary.get('passed', 0)}",
