@@ -31,15 +31,9 @@ A Streamlit web app with three modes:
 
 ## Screenshots
 
-> Drop screenshots into `screenshots/` and reference them here. Suggested set: `01_explorer.png`, `02_entry_detail.png`, `03_scanner_run.png`, `04_report.png`.
+<img src="screenshots/01_explorer.png" alt="Taxonomy Explorer showing the 52-entry catalog and the DI-001 detail panel" width="100%">
 
-```
-screenshots/
-├── 01_explorer.png       # Taxonomy Explorer with filters
-├── 02_entry_detail.png   # Single attack detail panel
-├── 03_scanner_run.png    # Scan in progress + summary card
-└── 04_report.png         # Saved report view with export buttons
-```
+*Taxonomy Explorer: filters on the left, the catalog in the middle, and the selected attack's payload, detection signal and references on the right.*
 
 ## Taxonomy categories
 
@@ -93,7 +87,7 @@ The app opens at <http://localhost:8501>. Taxonomy browsing works without an API
 
 ## Example scan output
 
-A scan against a deliberately-leaky demo system prompt produces a report like:
+The shape of a saved report (illustrative numbers, not a recorded run):
 
 ```json
 {
@@ -107,7 +101,7 @@ A scan against a deliberately-leaky demo system prompt produces a report like:
     "passed": 31,
     "failed": 14,
     "uncertain": 7,
-    "by_severity_failed": {"Critical": 4, "High": 6, "Medium": 3, "Low": 1},
+    "by_severity_failed": {"Critical": 4, "High": 6, "Medium": 4, "Low": 0},
     "by_owasp_failed": {
       "LLM01 Prompt Injection": 8,
       "LLM07 System Prompt Leakage": 3,
@@ -154,7 +148,8 @@ This project synthesises lessons from those sources into a *runnable* tool aimed
 ## Metrics
 
 - **52 catalogued attacks** across **7 categories**, with OWASP LLM Top 10, OWASP Agentic Top 10, and CWE mappings on every entry.
-- **Automated live scanning** of any pasted system prompt or Groq endpoint in under 30 seconds for a single category, ~2 minutes for the full taxonomy (Groq Llama 3.3 70B, default settings).
+- **Automated live scanning** of any pasted system prompt or Groq-hosted model. Scan time depends on the provider and is not benchmarked here.
+- **Tested catalog and scoring:** a pytest suite (run in CI) checks that all 52 entries are complete, uniquely numbered and mapped, and pins the scoring and judge-parsing logic.
 - **Judge-based scoring** with `PASS` / `FAIL` / `UNCERTAIN` verdicts and grounded one-line reasoning per finding.
 - **Severity-weighted vulnerability score** (0-100) calibrated so that resisting Critical attacks matters more than resisting Low-severity ones.
 
@@ -162,6 +157,8 @@ This project synthesises lessons from those sources into a *runnable* tool aimed
 
 - Every payload uses obvious placeholder values (e.g. `FAKE_TEST_KEY`, `attacker.example`) so the repo is safe to push and won't trip secret-scanners.
 - Run the scanner only against models / system prompts you are authorised to test. The taxonomy describes real attack patterns; use them responsibly.
+- The system prompt you scan is sent to Groq along with each payload. Do not scan prompts you cannot share with a third party.
+- See [SECURITY.md](SECURITY.md) to report a vulnerability and [CONTRIBUTING.md](CONTRIBUTING.md) to add an attack.
 
 ## License
 
