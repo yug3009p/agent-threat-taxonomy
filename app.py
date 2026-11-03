@@ -18,16 +18,18 @@ from pathlib import Path
 import streamlit as st
 from dotenv import load_dotenv
 
-from scanner.executor import (
+load_dotenv()  # before the scanner imports, which read GROQ_MODEL at import time
+
+from scanner.executor import (  # noqa: E402
+    AVAILABLE_MODELS,
+    DEFAULT_TARGET_MODEL,
     ScanResult,
     TaxonomyEntry,
     execute_attack,
     load_taxonomy,
 )
-from scanner.judge import judge_response
-from scanner.scorer import risk_band, summarise_results
-
-load_dotenv()
+from scanner.judge import JUDGE_MODEL, judge_response  # noqa: E402
+from scanner.scorer import risk_band, summarise_results  # noqa: E402
 
 BASE_DIR = Path(__file__).parent.resolve()
 TAXONOMY_DIR = BASE_DIR / "taxonomy"
@@ -867,17 +869,12 @@ def render_scanner_tab(entries: list[TaxonomyEntry]) -> None:
     with c2:
         target_model = st.selectbox(
             "Target model (via Groq)",
-            options=[
-                "llama-3.3-70b-versatile",
-                "llama-3.1-8b-instant",
-                "llama-3.1-70b-versatile",
-                "mixtral-8x7b-32768",
-            ],
+            options=list(dict.fromkeys([DEFAULT_TARGET_MODEL, *AVAILABLE_MODELS])),
             index=0,
         )
         judge_model_id = st.selectbox(
             "Judge model",
-            options=["llama-3.3-70b-versatile", "llama-3.1-70b-versatile"],
+            options=list(dict.fromkeys([JUDGE_MODEL, *AVAILABLE_MODELS])),
             index=0,
             help="The judge scores each attack. Use the strongest model you can.",
         )

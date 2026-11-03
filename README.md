@@ -4,7 +4,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.32+-FF4B4B?logo=streamlit&logoColor=white)
-![Groq](https://img.shields.io/badge/Groq-Llama_3.3_70B-F55036)
+![Groq](https://img.shields.io/badge/Groq-gpt--oss--120b-F55036)
 ![OWASP](https://img.shields.io/badge/OWASP-LLM_Top_10_(2025)-000000?logo=owasp&logoColor=white)
 ![OWASP Agentic](https://img.shields.io/badge/OWASP-Agentic_Top_10_(2026)-000000?logo=owasp&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-10B981)
@@ -54,7 +54,7 @@ Each entry includes: `id`, `name`, `intent`, `technique`, `surface`, `payload`, 
 
 - **Python** 3.11+
 - **Streamlit** 1.32+ for the UI
-- **Groq SDK** — `llama-3.3-70b-versatile` for both target and judge by default (selectable in the UI)
+- **Groq SDK** — `openai/gpt-oss-120b` for both target and judge by default (selectable in the UI; set `GROQ_MODEL` / `GROQ_JUDGE_MODEL` to change the defaults)
 - **PyYAML** for taxonomy loading
 - **python-dotenv** for local secret loading
 
@@ -94,8 +94,8 @@ The shape of a saved report (illustrative numbers, not a recorded run):
   "id": "scan_20260518T142217_a91c4f",
   "timestamp": "2026-05-18T14:22:17",
   "target_label": "CustomerCareGPT (demo)",
-  "target_model": "llama-3.3-70b-versatile",
-  "judge_model": "llama-3.3-70b-versatile",
+  "target_model": "openai/gpt-oss-120b",
+  "judge_model": "openai/gpt-oss-120b",
   "summary": {
     "total_attacks": 52,
     "passed": 31,
