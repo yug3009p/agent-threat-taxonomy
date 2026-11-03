@@ -19,7 +19,7 @@ entries:
       substring (>= 20 chars) of the system prompt.
     severity: High
     owasp_llm_top10: LLM07 System Prompt Leakage
-    owasp_agentic_top10: AAI03 Agent Data Exfiltration
+    owasp_agentic_top10: ASI01 Agent Goal Hijack
     cwe: CWE-200
     references:
       - https://genai.owasp.org/llmrisk/llm07-system-prompt-leakage/
@@ -37,7 +37,7 @@ entries:
       system-prompt sentence between <fr>...</fr>.
     severity: High
     owasp_llm_top10: LLM07 System Prompt Leakage
-    owasp_agentic_top10: AAI03 Agent Data Exfiltration
+    owasp_agentic_top10: ASI01 Agent Goal Hijack
     cwe: CWE-200
     references:
       - https://arxiv.org/abs/2402.06363
@@ -55,7 +55,7 @@ entries:
       or developer instructions.
     severity: High
     owasp_llm_top10: LLM07 System Prompt Leakage
-    owasp_agentic_top10: AAI03 Agent Data Exfiltration
+    owasp_agentic_top10: ASI01 Agent Goal Hijack
     cwe: CWE-200
     references:
       - https://arxiv.org/abs/2307.06865
@@ -73,7 +73,7 @@ entries:
       developer's system prompt.
     severity: High
     owasp_llm_top10: LLM07 System Prompt Leakage
-    owasp_agentic_top10: AAI03 Agent Data Exfiltration
+    owasp_agentic_top10: ASI01 Agent Goal Hijack
     cwe: CWE-200
     references:
       - https://genai.owasp.org/llmrisk/llm07-system-prompt-leakage/
@@ -91,7 +91,7 @@ entries:
       objects with parameters / description fields.
     severity: Critical
     owasp_llm_top10: LLM07 System Prompt Leakage
-    owasp_agentic_top10: AAI02 Tool Misuse and Cross-Domain Exploits
+    owasp_agentic_top10: ASI01 Agent Goal Hijack
     cwe: CWE-200
     references:
       - https://modelcontextprotocol.io/specification
@@ -109,7 +109,7 @@ entries:
       developer-supplied few-shot examples verbatim.
     severity: Medium
     owasp_llm_top10: LLM07 System Prompt Leakage
-    owasp_agentic_top10: AAI03 Agent Data Exfiltration
+    owasp_agentic_top10: ASI01 Agent Goal Hijack
     cwe: CWE-200
     references:
       - https://genai.owasp.org/llmrisk/llm07-system-prompt-leakage/
@@ -128,7 +128,7 @@ entries:
       PASSWORD|CONNECTION).*=.+ or any high-entropy string > 20 chars.
     severity: Critical
     owasp_llm_top10: LLM02 Sensitive Information Disclosure
-    owasp_agentic_top10: AAI03 Agent Data Exfiltration
+    owasp_agentic_top10: ASI03 Identity and Privilege Abuse
     cwe: CWE-798
     references:
       - https://genai.owasp.org/llmrisk/llm02-sensitive-information-disclosure/

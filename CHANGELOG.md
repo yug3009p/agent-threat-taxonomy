@@ -6,6 +6,17 @@ All notable changes to this project are documented here. The format follows
 ## [Unreleased]
 
 ### Fixed
+- Groq retired `llama-3.3-70b-versatile` and the other models offered in the UI, so scans failed.
+  Target and judge models now default to `openai/gpt-oss-120b` (verified with a live DI-001 run),
+  can be set with `GROQ_MODEL` / `GROQ_JUDGE_MODEL`, and have more token room for reasoning models.
+
+### Changed
+- `owasp_agentic_top10` now uses the official OWASP Top 10 for Agentic Applications (2026) codes
+  (ASI01-ASI10). The previous `AAI01`-`AAI05` codes were not part of the published list. Every
+  entry's old and new code, with the reason, is in `docs/owasp-agentic-mapping.md`, and a test
+  rejects any code outside the official list.
+
+### Fixed
 - The judge-reply parser crashed with `AttributeError` when the judge model returned a JSON list
   instead of an object; such replies now count as `UNCERTAIN`.
 - README: the example report contained a Low-severity failure although the catalog has no Low

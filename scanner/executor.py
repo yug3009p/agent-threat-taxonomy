@@ -8,6 +8,7 @@ modules so this layer stays unit-testable without a live LLM call.
 
 from __future__ import annotations
 
+import os
 import time
 from dataclasses import dataclass, field, asdict
 from pathlib import Path
@@ -127,7 +128,10 @@ def categories(entries: Iterable[TaxonomyEntry]) -> list[str]:
 
 # ── Attack execution ────────────────────────────────────────────────────────────
 
-DEFAULT_TARGET_MODEL = "llama-3.3-70b-versatile"
+# Groq retires models over time, so the default is configurable. Set GROQ_MODEL in .env to override.
+DEFAULT_TARGET_MODEL = os.getenv("GROQ_MODEL") or "openai/gpt-oss-120b"
+# Models offered in the UI. Checked against the Groq model list in November 2026.
+AVAILABLE_MODELS = ["openai/gpt-oss-120b", "openai/gpt-oss-20b", "qwen/qwen3.8-27b"]
 DEFAULT_TIMEOUT_SECONDS = 30
 
 
@@ -137,7 +141,7 @@ def execute_attack(
     system_prompt: str,
     *,
     model: str = DEFAULT_TARGET_MODEL,
-    max_tokens: int = 512,
+    max_tokens: int = 1024,  # reasoning models spend part of this before answering
     temperature: float = 0.2,
 ) -> ScanResult:
     """Send one taxonomy payload at the target LLM and capture the reply.
